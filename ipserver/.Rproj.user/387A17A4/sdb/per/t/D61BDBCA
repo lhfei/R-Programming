@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library('sqldf')\n\nfirst <- read.csv(\"C:/Users/lihf/Desktop/first.csv\");\n\nsecond <- read.csv(\"C:/Users/lihf/Desktop/second.csv\");\n\nthird <- sqldf('select a.Name, a. Code, a. Before, a. Num, b.Num, b.Contact, a.Address from second a inner join first b on a.Name = b.Name and a.Code = b.Code ');\n\nView(third)\n\nwrite.csv(third, file=\"E:/R_Workspace/ipserver/data/report/merge.csv\")",
+    "created" : 1462338282399.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4055961550",
+    "id" : "D61BDBCA",
+    "lastKnownWriteTime" : 1440492384,
+    "last_content_update" : 1440492384,
+    "path" : "D:/R_Workspace/ipserver/MergeExcel.R",
+    "project_path" : "MergeExcel.R",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

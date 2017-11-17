@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#\nplot(mini_log$V3~mini_log$V16, xlab=\"Error\", ylab=\"IP\", main=\"ERROR-IP\")\n\n\n# Add fit lines\n#abline(lm(mpg~wt), col=\"red\") # regression line (y~x) \n#lines(lowess(wt,mpg), col=\"blue\") # lowess line (x,y)\n\n#lines(lowess(mini_log$V3~mini_log$V16))\n\n\n# Enhanced Scatterplot of MPG vs. Weight \n# by Number of Car Cylinders \nlibrary(car) \nscatterplot(mpg ~ wt | cyl, data=mtcars, \n            xlab=\"Weight of Car\", ylab=\"Miles Per Gallon\", \n            main=\"Enhanced Scatter Plot\", \n            labels=row.names(mtcars))\n\n\nscatterplot(mini_log$V3 ~ mini_log$V16 | mini_log$V23, data=mini_log, \n            xlab=\"Weight of Car\", ylab=\"Miles Per Gallon\", \n            main=\"Enhanced Scatter Plot\", \n            labels=row.names(mini_log))\n\n\n# Scatterplot Matrices from the glus Package \nlibrary(gclus)\ndta <- mtcars[c(1,3,5,6)] # get data \ndta.r <- abs(cor(dta)) # get correlations\ndta.col <- dmat.color(dta.r) # get colors\n# reorder variables so those with highest correlation\n# are closest to the diagonal\ndta.o <- order.single(dta.r) \ncpairs(dta, dta.o, panel.colors=dta.col, gap=.5,\n       main=\"Variables Ordered and Colored by Correlation\" )\n",
+    "created" : 1462338200466.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1434068587",
+    "id" : "7DDE3BFD",
+    "lastKnownWriteTime" : 1426140701,
+    "last_content_update" : 1426140701,
+    "path" : "D:/R_Workspace/ipserver/RStatistic.R",
+    "project_path" : "RStatistic.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

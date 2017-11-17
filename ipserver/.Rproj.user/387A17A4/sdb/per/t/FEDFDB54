@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(sqldf)\n\nreport_0621 <- read.delim(\"E:/R_Workspace/ipserver/data/2015-06-21/000000_0\", header=FALSE)\nreport_0623 <- read.delim(\"E:/R_Workspace/ipserver/data/2015-06-23/000000_0\", header=FALSE)\n\nreport_title <- c(\"Err\", \"Total\", \"CT\", \"ORIGIN\")\n\nnames(report_0621) <- report_title\n\nnames(report_0623) <- report_title\n\nreport_0621_ct <- sqldf('select ct from report_0621 group by ct')\nreport_0621_daily <- sqldf('SELECT a.ERR, a.TOTAL, a.CT, a.ORIGIN FROM report_0621 a INNER JOIN report_0621_ct b ON a.CT = b.CT WHERE a.ERR IN (\"303000\", \"208000\")')\n\n#report_daily_21 <- sqldf('select a.err, a.total, b.err, b.total, a.total/b.total, a.ct from  report_0621_daily a, report_0621_daily b where a.ct = b.ct and a.err=\"30300\" and b.err=\"208000\"')\n\n\nreport_0623_ct <- sqldf('select ct from report_0623 group by ct')\nreport_0623_daily <- sqldf('SELECT a.ERR, a.TOTAL, a.CT, a.ORIGIN FROM report_0623 a INNER JOIN report_0623_ct b ON a.CT = b.CT WHERE a.ERR IN (\"303000\", \"208000\")')\n\n\nwrite.csv(report_0621_daily, file=\"E:/R_Workspace/ipserver/data/report/report_0621_daily.csv\")\nwrite.csv(report_0623_daily, file=\"E:/R_Workspace/ipserver/data/report/report_0623_daily.csv\")",
+    "created" : 1462338275986.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2576347769",
+    "id" : "FEDFDB54",
+    "lastKnownWriteTime" : 1435162805,
+    "last_content_update" : 1435162805,
+    "path" : "D:/R_Workspace/ipserver/ReportDaily.R",
+    "project_path" : "ReportDaily.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library('sparkR')\nsc <- sparkR.init()\nsqlContext <- sparkRSQL.init(sc)",
+    "created" : 1462338699992.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2569537798",
+    "id" : "342B02A4",
+    "lastKnownWriteTime" : 13229813538291830,
+    "last_content_update" : 1462338742962,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

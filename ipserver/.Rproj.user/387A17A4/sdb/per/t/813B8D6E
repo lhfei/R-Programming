@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "source(\"Analyse.R\")\n\nlibrary('sqldf')\n\n# group by ip\nip_18 <- sqldf('select ip, count(ip) as total from miss_18 group by ip order by total desc')\n\nip_17 <- sqldf('select ip, count(ip) as total from miss_17 group by ip order by total desc')\n\nip_16 <- sqldf('select ip, count(ip) as total from miss_16 group by ip order by total desc')\n\n\n# export\nwrite.table(ip_18, file=\"E:/R_Workspace/ipserver/data/report/ip_18.txt\", sep=\"\\t\", row.names=TRUE)\nwrite.table(ip_17, file=\"E:/R_Workspace/ipserver/data/report/ip_17.txt\", sep=\"\\t\", row.names=TRUE)\nwrite.table(ip_16, file=\"E:/R_Workspace/ipserver/data/report/ip_16.txt\", sep=\"\\t\", row.names=TRUE)\n\n\nwrite.csv(ip_18, file=\"E:/R_Workspace/ipserver/data/report/ip_18.csv\")\nwrite.csv(ip_17, file=\"E:/R_Workspace/ipserver/data/report/ip_17.csv\")\nwrite.csv(ip_16, file=\"E:/R_Workspace/ipserver/data/report/ip_16.csv\")\n\n\n\n",
+    "created" : 1462338206880.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "605144057",
+    "id" : "813B8D6E",
+    "lastKnownWriteTime" : 1428630278,
+    "last_content_update" : 1428630278,
+    "path" : "D:/R_Workspace/ipserver/IPStatistic.R",
+    "project_path" : "IPStatistic.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

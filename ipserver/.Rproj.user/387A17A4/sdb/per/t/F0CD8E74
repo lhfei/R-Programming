@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Import data \n\n## all data, include loc field is '#'\ngroup_err_loc_all <- read.delim(\"E:/R_Workspace/ipserver/data/group/group_err_loc_total.txt\", header=FALSE)\n\nnames(group_err_loc_all) <- c(\"Date\", \"Err\", \"Loc\", \"Total\")\n\n# import required library\n\nlibrary('sqldf')\n\n# exclude loc is '#'\ngroup_err_loc <- sqldf('select t.* from group_err_loc_all t where t.loc <> \"#\" order by t.total desc')\n\ngroup_locs <- sqldf('select distinct(t.loc) from group_err_loc t')\n\ngroup_rows <- sqldf('select t.loc, t.total as e208, t2.total as e303 from group_err_loc t,  group_err_loc t2 where t.err=\"208000\" and t2.err=\"303000\" and t.loc = t2.loc and t.loc in  group_locs')\n\n\n## Get MySQL connection.\n\ncon <-  dbConnect(RMySQL::MySQL(), \n                  username = \"lhfei\", \n                  password = \"Lhfei\",\n                  host = \"localhost\", \n                  port = 3306, \n                  dbname = \"ip_repository\"\n)\n\n## dbGetQuery | dbSendQuery\n\nquery <- paste(\"INSERT INTO GROUP_ERR_LOC(date, err, loc, total) VALUES(\", paste(group_err_loc[1,], collapse = \", \"), \")\")\ndbSendQuery(con, query)\n\ngroup_err_loc\n\n\n\ntotal_rows <- length(group_err_loc$Date)\n\nfor(i in c(1,2) ) {\n  query <- NULL\n   c_date <- paste('\"', group_err_loc[[1]][i], '\"')\n    c_err <- paste('\"', group_err_loc[[2]][i], '\"')\n    c_loc <- paste('\"', group_err_loc[[3]][i], '\"')\n  c_total <- group_err_loc[[4]][i]\n  \n  query <- paste(c_date, c_err, c_loc, c_total, sep=\", \", collapse = \", \")\n\n  query <- paste(\"INSERT INTO GROUP_ERR_LOC(date, err, loc, total) VALUES(\",  query,  \")\")\n  \n  print(query )\n  \n  dbSendQuery(con, query)\n}\n\n\n\n#dbSendQuery(con, query)\n\nquery <- 'INSERT INTO GROUP_ERR_LOC(date, err, loc, total) VALUES( \"316\", \"303000\", \"111.161.7.201\", 14559 )'\ndbSendQuery(con, query)\n\n\n\n\n",
+    "created" : 1462338285554.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1249781212",
+    "id" : "F0CD8E74",
+    "lastKnownWriteTime" : 1429962644,
+    "last_content_update" : 1429962644,
+    "path" : "D:/R_Workspace/ipserver/GroupAnalyzer.R",
+    "project_path" : "GroupAnalyzer.R",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
